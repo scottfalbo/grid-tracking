@@ -18,14 +18,18 @@ namespace GridTrackingTests
             Assert.Equal(actual, result);
         }
 
-        [Fact]
-        public void CanSuccessfullyPlotNewCritterOnTheGrid()
+        [Theory]
+        [InlineData("Spaceghost", 10, 10)]
+        [InlineData("Harry Winston", 17, 65)]
+        [InlineData("Lucipurr", 87, 12)]
+        [InlineData("Ethel Bean", 0, 99)]
+        public void CanSuccessfullyPlotNewCritterOnTheGrid(string name, int x, int y)
         {
             Map map = new Map(100, 100);
-            Kraken kraken = new Kraken("Spaceghost", 56, 67);
+            Kraken kraken = new Kraken(name, x, y);
             map.PlotCritter(kraken);
-            string actual = "Spaceghost";
-            string result = map.Grid[new Tuple<int, int>(56, 67)][0].Name;
+            string actual = name;
+            string result = map.Grid[new Tuple<int, int>(x, y)][0].Name;
             Assert.Equal(actual, result);
         }
     }
