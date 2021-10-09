@@ -1,16 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GridTracking;
 using System;
 using Xunit;
 
 namespace GridTrackingTests
 {
-    [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestMethod1()
+        [Theory]
+        [InlineData(10, 10, 100)]
+        [InlineData(100, 100, 10000)]
+        [InlineData(1000, 1000, 1000000)]
+        public void CanSuccessfullyCreateMapAndPlotGrid(int x, int y, int actual)
         {
-            Assert.AreEqual(0, 0);
+            Map testMap = new Map(x, y);
+            int result = testMap.Grid.Count;
+            Assert.Equal(actual, result);
         }
     }
 }

@@ -13,8 +13,14 @@ namespace GridTracking
             MakeMap(x, y);
         }
 
+        /// <summary>
+        /// Instantiate the Dictionary and add entires with Coords as keys.
+        /// </summary>
+        /// <param name="x"> height </param>
+        /// <param name="y"> width </param>
         public void MakeMap(int x, int y)
         {
+            Grid = new Dictionary<Coords, List<string>>();
             for (int i = 0; i < x; i++)
             {
                 for (int j = 0; j < y; j++)
@@ -24,6 +30,10 @@ namespace GridTracking
             }
         }
 
+        /// <summary>
+        /// Get a random direction for the movement.
+        /// </summary>
+        /// <returns> random Direction enum </returns>
         public Direction GetRandomDirection()
         {
             var random = new Random(DateTime.Now.Millisecond);
