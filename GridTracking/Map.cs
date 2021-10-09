@@ -34,8 +34,7 @@ namespace GridTracking
                     {
                         int[] move = DirectionToCoords(GetRandomDirection());
                         MoveCritter(critter, move);
-                    }
-                        
+                    }   
                 }
             }
         }
@@ -67,6 +66,12 @@ namespace GridTracking
         public bool ValidMovement(int x, int y) =>
             (x >= 0 && x < Height && y >= 0 && y < Width);
 
+        /// <summary>
+        /// Converts the Direction enum result into x, y movement adjustment.
+        /// Up = {-1, 0}, Down = {1, 0}, Left = {0, -1}, Right = {0, 1}
+        /// </summary>
+        /// <param name="direction"> Direction direction </param>
+        /// <returns> int[]{x, y} </returns>
         public int[] DirectionToCoords(Direction direction)
         {
             int[] move = new int[2] { 0, 0 };
@@ -89,7 +94,6 @@ namespace GridTracking
             }
             return move;
         }
-
 
         /// <summary>
         /// Plot a new Critter object on the grid.
