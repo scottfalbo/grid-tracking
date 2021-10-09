@@ -13,7 +13,7 @@ namespace GridTracking
             MakeMap(x, y);
         }
 
-        private void MakeMap(int x, int y)
+        public void MakeMap(int x, int y)
         {
             for (int i = 0; i < x; i++)
             {
@@ -24,6 +24,11 @@ namespace GridTracking
             }
         }
 
-
+        public Direction GetRandomDirection()
+        {
+            var random = new Random(DateTime.Now.Millisecond);
+            var randomValue = random.Next(0, 4);
+            return (Direction)randomValue;
+        }
     }
 }
