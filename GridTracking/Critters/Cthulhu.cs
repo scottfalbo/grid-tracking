@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GridTracking.Critters
 {
-    class Cthulhu : Critter
+    public class Cthulhu : Critter
     {
         public Cthulhu() { }
 

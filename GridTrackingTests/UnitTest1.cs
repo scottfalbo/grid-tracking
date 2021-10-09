@@ -45,5 +45,44 @@ namespace GridTrackingTests
             bool result = map.ValidMovement(x, y);
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void CanSuccessfullyMoveCritterToNewValidCoord()
+        {
+            Map map = new Map(10, 10);
+            Leviathan leviathan = new Leviathan("Lucipurr", 5, 6);
+            map.PlotCritter(leviathan);
+            int[] move = new int[] { 0, 1 };
+            map.MoveCritter(leviathan, move);
+            string expected = "Lucipurr";
+            string result = map.Grid[new Tuple<int, int>(5, 7)][0].Name;
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void CanSuccessfullyRemoveCritterFromCurrentCoordOnMove()
+        {
+            Map map = new Map(10, 10);
+            Leviathan leviathan = new Leviathan("Ethel", 5, 6);
+            map.PlotCritter(leviathan);
+            int[] move = new int[] { 0, 1 };
+            map.MoveCritter(leviathan, move);
+            int expected = 0;
+            int result = map.Grid[new Tuple<int, int>(5, 6)].Count;
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void CritterStaysInPlaceOnEdgeCollison()
+        {
+            Map map = new Map(10, 10);
+            Cthulhu cthulhu = new Cthulhu("Harry Winston", 9, 9);
+            map.PlotCritter(cthulhu);
+            int[] move = new int[] { 0, 1 };
+            map.MoveCritter(cthulhu, move);
+            string expected = "Harry Winston";
+            string result = map.Grid[new Tuple<int, int>(9, 9)][0].Name;
+            Assert.Equal(expected, result);
+        }
     }
 }

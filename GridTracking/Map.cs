@@ -20,6 +20,10 @@ namespace GridTracking
             CritterCount = 0;
         }
 
+        /// <summary>
+        /// Move each critter on the grid in a random direction.
+        /// Critters do not move beyond map boundries. (Index Range)
+        /// </summary>
         public void MoveCritters()
         {
             foreach (var coord in Grid)
@@ -28,31 +32,63 @@ namespace GridTracking
                 {
                     foreach (Critter critter in coord.Value)
                     {
-                        Direction direction = GetRandomDirection();
-                        switch (direction)
-                        {
-                            case Direction.Up:
-
-                                break;
-                            case Direction.Down:
-
-                                break;
-                            case Direction.Left:
-
-                                break;
-                            case Direction.Right:
-
-                                break;
-                            default:
-                                break;
-                        }
+                        int[] move = DirectionToCoords(GetRandomDirection());
+                        MoveCritter(critter, move);
                     }
+                        
                 }
             }
         }
 
+        /// <summary>
+        /// Helper method to validate, remove, and assign new positions on the Grid for each critter movement.
+        /// </summary>
+        /// <param name="critter"> Critter object to move </param>
+        /// <param name="move"> int[]{x, y} </param>
+        public void MoveCritter(Critter critter, int[] move)
+        {
+            if (ValidMovement(critter.X + move[0], critter.Y + move[1]))
+            {
+                critter.PreviousX = critter.X;
+                critter.PreviousY = critter.Y;
+                Grid[new Tuple<int, int>(critter.X, critter.Y)].Remove(critter);
+                critter.X += move[0];
+                critter.Y += move[1];
+                Grid[new Tuple<int, int>(critter.X, critter.Y)].Add(critter);
+            }
+        }
+
+        /// <summary>
+        /// Checks for edges of the grid to ensure movement is not out of range.
+        /// </summary>
+        /// <param name="x"> int x </param>
+        /// <param name="y"> int y </param>
+        /// <returns> true if valid else false </returns>
         public bool ValidMovement(int x, int y) =>
-            !(x < 0 || x > Height-1 || y < 0 || y > Width-1);
+            (x >= 0 && x < Height && y >= 0 && y < Width);
+
+        public int[] DirectionToCoords(Direction direction)
+        {
+            int[] move = new int[2] { 0, 0 };
+            switch (direction)
+            {
+                case Direction.Up:
+                    move[0] -= 1;
+                    break;
+                case Direction.Down:
+                    move[0] += 1;
+                    break;
+                case Direction.Left:
+                    move[1] -= 1;
+                    break;
+                case Direction.Right:
+                    move[0] += 1;
+                    break;
+                default:
+                    break;
+            }
+            return move;
+        }
 
 
         /// <summary>
