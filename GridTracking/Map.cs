@@ -8,11 +8,52 @@ namespace GridTracking
     public class Map
     {
         public Dictionary<Tuple<int, int>, List<Critter>> Grid { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public int CritterCount { get; set; }
 
         public Map(int x, int y)
         {
             MakeMap(x, y);
+            Height = x;
+            Width = y;
+            CritterCount = 0;
         }
+
+        public void MoveCritters()
+        {
+            foreach (var coord in Grid)
+            {
+                if (coord.Value.Count > 0)
+                {
+                    foreach (Critter critter in coord.Value)
+                    {
+                        Direction direction = GetRandomDirection();
+                        switch (direction)
+                        {
+                            case Direction.Up:
+
+                                break;
+                            case Direction.Down:
+
+                                break;
+                            case Direction.Left:
+
+                                break;
+                            case Direction.Right:
+
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        public bool ValidMovement(int x, int y) =>
+            !(x < 0 || x > Height-1 || y < 0 || y > Width-1);
+
 
         /// <summary>
         /// Plot a new Critter object on the grid.
@@ -21,6 +62,7 @@ namespace GridTracking
         public void PlotCritter(Critter critter) 
         {
             Grid[new Tuple<int, int>(critter.X, critter.Y)].Add(critter);
+            CritterCount++;
         }
 
         /// <summary>
