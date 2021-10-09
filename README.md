@@ -1,7 +1,5 @@
 # Grid Movement Tracking Data Structure
 
----
-
 *Author: Scott Falbo*
 
 ---
@@ -12,7 +10,9 @@ A C# implementation of a `Map` data structure for tracking movement.  The map co
 
 ---
 
-# `Map`
+## `Map`
+
+[`Map.cs` code](https://github.com/scottfalbo/grid-tracking/blob/main/GridTracking/Map.cs)
 
 ## Properties
 
