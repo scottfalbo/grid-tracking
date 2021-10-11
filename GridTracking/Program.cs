@@ -18,8 +18,8 @@ namespace GridTracking
 
             for (int i = 0; i < 10; i++)
             {
-                long x = random.Next(0, 10);
-                long y = random.Next(0, 10);
+                long x = random.Next(0, 25);
+                long y = random.Next(0, 25);
                 Leviathan leviathan = new Leviathan($"whatever{x}{y}", x, y);
                 map.PlotCritter(leviathan);
             }

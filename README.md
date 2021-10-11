@@ -6,7 +6,29 @@
 
 ## Description
 
-A C# implementation of a `Map` data structure for tracking movement.  The map contains a `Dictionary` of coordinates and a list of each cells inhabitants.
+A C# implementation of a `Map` data structure for tracking movement.  The map contains a `Dictionary` of coordinates and a list of each cells inhabitants.  Class properties and methods are detailed below.
+
+---
+
+## Getting Started
+
++ There is a simple console UI in the project with a visual representation of the movement tracking system.
+  + `git clone https://github.com/scottfalbo/grid-tracking.git`
+  + Run the project and follow the console prompts.
++ To implement into another project copy:
+  + `Map.cs`
+  + `Direction.cs`
+  + `Critters/Critter.cs`
+    + Specific critters can be derived from `Critter`
+    + ```
+      public class Kraken : Critter
+      {
+          public Kraken (string name, long x, long y) : base(name, x, y)
+          {
+              ...
+          }
+      }
+      ```
 
 ---
 
@@ -28,7 +50,7 @@ A C# implementation of a `Map` data structure for tracking movement.  The map co
 ## Methods
 
 | Method | Summary | Big O Time | Big O Space | Example |
-| :----------- | :----------- | :-------------: | :-------------: | :----------- |
+| :- | :- | :- | :- | :- |
 | MoveCritters | Randomly moves each `Critter` object on the grid one space in a random direction. | O(n^2) | O(1) | `myMap.MoveCritters()` |
 | MoveCritter | Checks to see if the requested move is within the index limits of the Grid.  If so the `Critter` object is removed from it's current coordinate and moved the new target. | O(1) | O(1) | `myMap.MoveCritter(Critter critter, int[] move)` |
 | ValidMovement | Ensures that the proposed movement is within the index range of the Grid. | O(1) | O(1) | `myMap.ValidMovement(long x, long y`) |
@@ -36,12 +58,12 @@ A C# implementation of a `Map` data structure for tracking movement.  The map co
 | RemoveCritter | Removes the Critter object from the Dictionary.  If it is the only critter at that coordinate the key/value is removed from the dictionary. | O(n) | - | `myMap.RemoveCritter(Critter critter)` |
 | ViewCoordinate | Retrieve a `List<Critter>` of all critters at the location.  Returns null if there are none. | O(n) | O(n) | `myMap.ViewCoordinate(long x, long y)` |
 | PrintMap | Print the map to the console. Each cell is represented by the number of critters populating it. | O(n^2) | - | `myMap.PrintMap()` |
-| GetMovementPattern | Retrieve a list of a `Critter` objects movement history in the form of (x, y) coordinates.  Returns critter.Movement. | O(n) | O(n) | `myMap.GetMovementPattern(Critter critter)` |
+| GetMovementPattern | Retrieve a list of a `Critter` objects movement history in the form of (x, y) coordinates.  Returns `Critter.Movement`. | O(1) | O(n) | `myMap.GetMovementPattern(Critter critter)` |
 | GetCurrentCoord | Retrieve the current coordinate of the critter.  Returns `Tuple<long, long>(critter.X, critter.Y)` | O(1) | O(1) | `myMap.GetCurrentCoord(Critter critter)` |
 
 ---
 
-# `Critter`
+## `Critter`
 
 Base class that individual critters derive from.
 
