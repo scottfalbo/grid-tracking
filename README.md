@@ -34,6 +34,7 @@ A C# implementation of a `Map` data structure for tracking movement.  The map co
 | ValidMovement | Ensures that the proposed movement is within the index range of the Grid. | O(1) | O(1) | `myMap.ValidMovement(long x, long y`) |
 | PlotCritter | Checks the `Critter` objects assigned X and Y properties.  If the key already exists in the Dictionary the critter is added to the list, if not a new key/value is created with the `Critter` object. | O(1) | O(1) | `myMap.PlotCritter(Critter critter)` |
 | RemoveCritter | Removes the Critter object from the Dictionary.  If it is the only critter at that coordinate the key/value is removed from the dictionary. | O(n) | - | `myMap.RemoveCritter(Critter critter)` |
+| ViewCoordinate | Retrieve a `List<Critter>` of all critters at the location.  Returns null if there are none. | O(n) | O(n) | `myMap.ViewCoordinate(long x, long y)` |
 
 ---
 
@@ -58,6 +59,6 @@ Base class that individual critters derive from.
 
 + 10/10/2021
   + Changed the type of the coordinate variables from `int` to `long` to accommodate larger tracking areas.
-  + Removed the `MakeMap` method which was used to populate the dictionary with entries for each coordinate on instantiation.  Instead the Dictionary will only contain coordinates that are populated.
+  + Removed the `MakeMap` method which was used to populate the dictionary with entries for each coordinate on instantiation.  Instead the Dictionary will only contain coordinates that contain critters.
   + Refactored the `PlotCritter` and `MoveCritter` methods to create and remove Dictionary entries based on whether the cell is populated or not.
   + Moved the random direction and related coordinate conversion methods to `Direction.cs`.

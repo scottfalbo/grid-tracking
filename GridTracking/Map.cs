@@ -96,5 +96,25 @@ namespace GridTracking
                 Grid.Remove(coords);
             CritterCount--;
         }
+
+        /// <summary>
+        /// Returns a list of critters at the given coordinates.
+        /// Returns null if the cell is empty.
+        /// </summary>
+        /// <param name="x"> x coord </param>
+        /// <param name="y"> y coord </param>
+        /// <returns> List<Critter> : null </returns>
+        public List<Critter> ViewCoordinate(long x, long y)
+        {
+            List<Critter> critters = new List<Critter>();
+            Tuple<long, long> coords = new Tuple<long, long>(x, y);
+            if (Grid.ContainsKey(coords))
+            {
+                foreach (Critter critter in Grid[coords])
+                    critters.Add(critter);
+                return critters;
+            }
+            return null;
+        }
     }
 }

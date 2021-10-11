@@ -1,6 +1,7 @@
 using GridTracking;
 using GridTracking.Critters;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace GridTrackingTests
@@ -72,6 +73,31 @@ namespace GridTrackingTests
             string expected = "Harry Winston";
             string result = map.Grid[new Tuple<long, long>(9, 9)][0].Name;
             Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void CanRetrieveCrittersFromGridAtGivenCoords()
+        {
+            Map map = new Map(1000, 1000);
+            Kraken spaceghost = new Kraken("Spaceghost", 600, 600);
+            Cthulhu harry = new Cthulhu("Harry Winston", 600, 600);
+            Leviathan luci = new Leviathan("Lucipurr", 600, 600);
+            Leviathan ethel = new Leviathan("Ethel Bean", 600, 600);
+            map.PlotCritter(spaceghost);
+            map.PlotCritter(harry);
+            map.PlotCritter(luci);
+            map.PlotCritter(ethel);
+            List<Critter> expected = new List<Critter>()
+                { spaceghost, harry, luci, ethel };
+            List<Critter> actual = map.ViewCoordinate(600, 600);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ViewCoordinateReturnsNullIfCellHasNoCritters()
+        {
+            Map map = new Map(1000, 1000);
+            Assert.Null(map.ViewCoordinate(123, 456));
         }
     }
 }
