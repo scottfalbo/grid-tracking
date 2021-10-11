@@ -65,3 +65,5 @@ Base class that individual critters derive from.
   + Moved the random direction and related coordinate conversion methods to `Direction.cs`.
   + Added and tested the `ViewCoordinate` method detailed above.
   + Added the `PrintMap` method detailed above.
++ 10/11/2021
+  + Refactored derived class constructors to inherit shared constructor from `Critter` class.

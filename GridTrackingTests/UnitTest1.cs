@@ -97,5 +97,19 @@ namespace GridTrackingTests
             Map map = new Map(1000, 1000);
             Assert.Null(map.ViewCoordinate(123, 456));
         }
+
+        [Fact]
+        public void CanSuccessfullyTrackAndRecordCritterMovement()
+        {
+            Map map = new Map(100, 100);
+            Kraken kraken = new Kraken("Lucipurr the Destroyer", 50, 50);
+            map.PlotCritter(kraken);
+            int[] move = new int[] { 1, 0 };
+            map.MoveCritter(kraken, move);
+            move = new int[] { 0, -1 };
+            map.MoveCritter(kraken, move);
+            move = new int[] { 1, 0 };
+            map.MoveCritter(kraken, move);
+        }
     }
 }

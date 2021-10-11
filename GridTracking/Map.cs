@@ -46,8 +46,7 @@ namespace GridTracking
         {
             if (ValidMovement(critter.X + move[0], critter.Y + move[1]))
             {
-                critter.PreviousX = critter.X;
-                critter.PreviousY = critter.Y;
+                critter.Movement.Add(new Tuple<long, long>(critter.X, critter.Y));
                 RemoveCritter(critter);
 
                 critter.X += move[0];
@@ -141,5 +140,21 @@ namespace GridTracking
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        /// <summary>
+        /// Retreive a list of the critters movement history.
+        /// </summary>
+        /// <param name="critter"> Critter object </param>
+        /// <returns> List<Tuple<long, long>> </returns>
+        public List<Tuple<long, long>> GetMovementPattern(Critter critter) =>
+            critter.Movement;
+
+        /// <summary>
+        /// Retreives the critters current location.
+        /// </summary>
+        /// <param name="critter"> Critter object </param>
+        /// <returns> Tuple<long, long> </returns>
+        public Tuple<long, long> GetCurrentCoord(Critter critter) =>
+            new Tuple<long, long>(critter.X, critter.Y);
     }
 }
