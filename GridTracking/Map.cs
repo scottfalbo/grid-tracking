@@ -116,5 +116,25 @@ namespace GridTracking
             }
             return null;
         }
+
+        /// <summary>
+        /// Output the Map to the console.
+        /// Each cell is represented by the number of creatures populating it.
+        /// </summary>
+        public void PrintMap()
+        {
+            for (long i = 0; i < Height; i++)
+            {
+                for (long j = 0; j < Width; j++)
+                {
+                    Tuple<long, long> coords = new Tuple<long, long>(i, j);
+                    if (Grid.ContainsKey(coords))
+                        Console.Write($" {Grid[coords].Count} ");
+                    else
+                        Console.Write($" {0} ");
+                }
+                Console.WriteLine("");
+            }
+        }
     }
 }
