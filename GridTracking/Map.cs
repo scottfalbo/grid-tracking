@@ -129,12 +129,19 @@ namespace GridTracking
                 {
                     Tuple<long, long> coords = new Tuple<long, long>(i, j);
                     if (Grid.ContainsKey(coords))
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.Write($" {Grid[coords].Count} ");
+                    }
                     else
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.Write($" {0} ");
+                    }
                 }
                 Console.WriteLine("");
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
