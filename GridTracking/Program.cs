@@ -8,19 +8,30 @@ namespace GridTracking
     {
         static void Main(string[] args)
         {
+            ConsoleUI();
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    int[] coords = Direction.GetRandomDirection();
+            //    Console.WriteLine($"{coords[0]}, {coords[1]}");
+            //}
+
+        }
+
+        static void ConsoleUI()
+        {
             Map map = new Map(25, 25);
             Random random = new Random();
 
             for (int i = 0; i < 10; i++)
-            { 
+            {
                 long x = random.Next(0, 10);
                 long y = random.Next(0, 10);
-                Leviathan leviathan = new Leviathan("whatever", x, y);
+                Leviathan leviathan = new Leviathan($"whatever{x}{y}", x, y);
                 map.PlotCritter(leviathan);
             }
 
             bool exit = false;
-            while(!exit)
+            while (!exit)
             {
                 map.PrintMap();
                 Console.WriteLine("Select an option");

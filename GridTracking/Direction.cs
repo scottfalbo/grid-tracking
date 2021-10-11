@@ -38,7 +38,7 @@ namespace GridTracking
                     move[1] -= 1;
                     break;
                 case RandomDirection.Right:
-                    move[0] += 1;
+                    move[1] += 1;
                     break;
                 default:
                     break;
