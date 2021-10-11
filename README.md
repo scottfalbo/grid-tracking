@@ -1,4 +1,4 @@
-# Grid Movement Tracking Data Structure
+# Grid Movement Tracking
 
 *Author: Scott Falbo*
 
@@ -56,7 +56,7 @@ A C# implementation of a `Map` data structure for tracking the movement of multi
 | Method | Summary | Big O Time | Big O Space | Example |
 | :- | :- | :- | :- | :- |
 | MoveCritters | Randomly moves each `Critter` object on the grid one space in a random direction. | O(n^2) | O(1) | `myMap.MoveCritters()` |
-| MoveCritter | Checks to see if the requested move is within the index limits of the Grid.  If so the `Critter` object is removed from it's current coordinate and moved the new target. | O(1) | O(1) | `myMap.MoveCritter(Critter critter, int[] move)` |
+| MoveCritter | The `Critter` object is removed from it's current coordinate and moved to the new targeted coordinate. | O(1) | O(1) | `myMap.MoveCritter(Critter critter, int[] move)` |
 | ValidMovement | Ensures that the proposed movement is within the index range of the Grid. | O(1) | O(1) | `myMap.ValidMovement(long x, long y`) |
 | PlotCritter | Checks the `Critter` objects assigned X and Y properties.  If the key already exists in the Dictionary the critter is added to the list, if not a new key/value is created with the `Critter` object. | O(1) | O(1) | `myMap.PlotCritter(Critter critter)` |
 | RemoveCritter | Removes the Critter object from the Dictionary.  If it is the only critter at that coordinate the key/value is removed from the dictionary. | O(n) | - | `myMap.RemoveCritter(Critter critter)` |
