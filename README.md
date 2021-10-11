@@ -6,7 +6,7 @@
 
 ## Description
 
-A C# implementation of a `Map` data structure for tracking movement.  The map contains a `Dictionary` of coordinates and a list of each cells inhabitants.  Class properties and methods are detailed below.
+A C# implementation of a `Map` data structure for tracking the movement of multiple targets.  The map contains a `Dictionary` of coordinates and a list of each cells inhabitants.  Class properties and methods are detailed below.
 
 ---
 
@@ -20,15 +20,16 @@ A C# implementation of a `Map` data structure for tracking movement.  The map co
   + `Direction.cs`
   + `Critters/Critter.cs`
     + Specific critters can be derived from `Critter`
-    + ```
-      public class Kraken : Critter
-      {
-          public Kraken (string name, long x, long y) : base(name, x, y)
-          {
-              ...
-          }
-      }
-      ```
+
+```cs
+    public class Kraken : Critter
+    {
+        public Kraken (string name, long x, long y) : base(name, x, y)
+        {
+            ...
+        }
+    }
+```
 
 ---
 
