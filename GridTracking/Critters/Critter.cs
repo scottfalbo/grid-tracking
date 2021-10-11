@@ -12,5 +12,12 @@ namespace GridTracking.Critters
         public long Y { get; set; }
         public long PreviousX { get; set; }
         public long PreviousY { get; set; }
+
+        public Critter(string name, long x, long y)
+        {
+            Name = name;
+            X = x;
+            Y = y;
+        }
     }
 }

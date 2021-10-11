@@ -6,14 +6,9 @@ namespace GridTracking.Critters
 {
     public class Cthulhu : Critter
     {
-        public Cthulhu() { }
-
-        public Cthulhu(string name, long x, long y)
+        public Cthulhu(string name, long x, long y) : base(name, x, y)
         {
             Type = "Cthulhu";
-            Name = name;
-            X = x;
-            Y = y;
         }
     }
 }

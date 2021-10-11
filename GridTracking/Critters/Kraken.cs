@@ -6,14 +6,9 @@ namespace GridTracking.Critters
 {
     public class Kraken : Critter
     {
-        public Kraken() { }
-
-        public Kraken(string name, long x, long y)
+        public Kraken(string name, long x, long y) : base(name, x, y)
         {
             Type = "Kraken";
-            Name = name;
-            X = x;
-            Y = y;
         }
     }
 }
