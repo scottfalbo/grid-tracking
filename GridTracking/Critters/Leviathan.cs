@@ -8,7 +8,7 @@ namespace GridTracking.Critters
     {
         public Leviathan() { }
 
-        public Leviathan(string name, int x, int y)
+        public Leviathan(string name, long x, long y)
         {
             Type = "Leviathan";
             Name = name;

@@ -8,28 +8,17 @@ namespace GridTrackingTests
     public class UnitTest1
     {
         [Theory]
-        [InlineData(10, 10, 100)]
-        [InlineData(100, 100, 10000)]
-        [InlineData(1000, 1000, 1000000)]
-        public void CanSuccessfullyCreateMapAndPlotGrid(int x, int y, int expected)
-        {
-            Map map = new Map(x, y);
-            int result = map.Grid.Count;
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
         [InlineData("Spaceghost", 10, 10)]
         [InlineData("Harry Winston", 17, 65)]
         [InlineData("Lucipurr", 87, 12)]
-        [InlineData("Ethel Bean", 0, 99)]
-        public void CanSuccessfullyPlotNewCritterOnTheGrid(string name, int x, int y)
+        [InlineData("Ethel Bean", 56003, 70933)]
+        public void CanSuccessfullyPlotNewCritterOnTheGrid(string name, long x, long y)
         {
             Map map = new Map(100, 100);
             Kraken kraken = new Kraken(name, x, y);
             map.PlotCritter(kraken);
             string expected = name;
-            string result = map.Grid[new Tuple<int, int>(x, y)][0].Name;
+            string result = map.Grid[new Tuple<long, long>(x, y)][0].Name;
             Assert.Equal(expected, result);
         }
 
@@ -55,7 +44,7 @@ namespace GridTrackingTests
             int[] move = new int[] { 0, 1 };
             map.MoveCritter(leviathan, move);
             string expected = "Lucipurr";
-            string result = map.Grid[new Tuple<int, int>(5, 7)][0].Name;
+            string result = map.Grid[new Tuple<long, long>(5, 7)][0].Name;
             Assert.Equal(expected, result);
         }
 
@@ -68,7 +57,7 @@ namespace GridTrackingTests
             int[] move = new int[] { 0, 1 };
             map.MoveCritter(leviathan, move);
             int expected = 0;
-            int result = map.Grid[new Tuple<int, int>(5, 6)].Count;
+            int result = map.Grid[new Tuple<long, long>(5, 6)].Count;
             Assert.Equal(expected, result);
         }
 
@@ -81,7 +70,7 @@ namespace GridTrackingTests
             int[] move = new int[] { 0, 1 };
             map.MoveCritter(cthulhu, move);
             string expected = "Harry Winston";
-            string result = map.Grid[new Tuple<int, int>(9, 9)][0].Name;
+            string result = map.Grid[new Tuple<long, long>(9, 9)][0].Name;
             Assert.Equal(expected, result);
         }
     }

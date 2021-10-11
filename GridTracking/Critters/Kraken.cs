@@ -8,7 +8,7 @@ namespace GridTracking.Critters
     {
         public Kraken() { }
 
-        public Kraken(string name, int x, int y)
+        public Kraken(string name, long x, long y)
         {
             Type = "Kraken";
             Name = name;

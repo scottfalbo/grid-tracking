@@ -102,7 +102,11 @@ namespace GridTracking
         /// <param name="critter"> Critter object </param>
         public void PlotCritter(Critter critter) 
         {
-            Grid[new Tuple<long, long>(critter.X, critter.Y)].Add(critter);
+            Tuple<long, long> coords = new Tuple<long, long>(critter.X, critter.Y);
+            if (Grid.ContainsKey(coords))
+                Grid[coords].Add(critter);
+            else
+                Grid.Add(coords, new List<Critter>() { critter });
             CritterCount++;
         }
 
