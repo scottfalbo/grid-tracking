@@ -51,10 +51,15 @@ namespace GridTracking
             {
                 critter.PreviousX = critter.X;
                 critter.PreviousY = critter.Y;
-                Grid[new Tuple<long, long>(critter.X, critter.Y)].Remove(critter);
+
+                // remove
+
+
                 critter.X += move[0];
                 critter.Y += move[1];
-                Grid[new Tuple<long, long>(critter.X, critter.Y)].Add(critter);
+
+
+                // add new
             }
         }
 
@@ -97,7 +102,8 @@ namespace GridTracking
         }
 
         /// <summary>
-        /// Plot a new Critter object on the grid.
+        /// Check to see if key exists in Dictionary.
+        /// If it exists add the critter to the List, if not create the key/value pair.
         /// </summary>
         /// <param name="critter"> Critter object </param>
         public void PlotCritter(Critter critter) 
@@ -108,6 +114,21 @@ namespace GridTracking
             else
                 Grid.Add(coords, new List<Critter>() { critter });
             CritterCount++;
+        }
+
+        /// <summary>
+        /// Removes the critter from the dictionary.
+        /// If it's the only critter in a cell the keay/value is removed from dictionary.
+        /// </summary>
+        /// <param name="critter"> Critter object to remove </param>
+        public void RemoveCritter(Critter critter)
+        {
+            Tuple<long, long> coords = new Tuple<long, long>(critter.X, critter.Y);
+            if (Grid.ContainsKey(coords))
+                Grid[coords].Remove(critter);
+            else
+                Grid.Remove(coords);
+            CritterCount--;
         }
 
         /// <summary>
