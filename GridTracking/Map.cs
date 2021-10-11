@@ -7,14 +7,15 @@ namespace GridTracking
 {
     public class Map
     {
-        public Dictionary<Tuple<int, int>, List<Critter>> Grid { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
-        public int CritterCount { get; set; }
+        public Dictionary<Tuple<long, long>, List<Critter>> Grid { get; set; }
+        public long Height { get; set; }
+        public long Width { get; set; }
+        public long CritterCount { get; set; }
 
-        public Map(int x, int y)
+        public Map(long x, long y)
         {
-            MakeMap(x, y);
+            //MakeMap(x, y);
+            Grid = new Dictionary<Tuple<long, long>, List<Critter>>();
             Height = x;
             Width = y;
             CritterCount = 0;
@@ -50,10 +51,10 @@ namespace GridTracking
             {
                 critter.PreviousX = critter.X;
                 critter.PreviousY = critter.Y;
-                Grid[new Tuple<int, int>(critter.X, critter.Y)].Remove(critter);
+                Grid[new Tuple<long, long>(critter.X, critter.Y)].Remove(critter);
                 critter.X += move[0];
                 critter.Y += move[1];
-                Grid[new Tuple<int, int>(critter.X, critter.Y)].Add(critter);
+                Grid[new Tuple<long, long>(critter.X, critter.Y)].Add(critter);
             }
         }
 
@@ -63,7 +64,7 @@ namespace GridTracking
         /// <param name="x"> int x </param>
         /// <param name="y"> int y </param>
         /// <returns> true if valid else false </returns>
-        public bool ValidMovement(int x, int y) =>
+        public bool ValidMovement(long x, long y) =>
             (x >= 0 && x < Height && y >= 0 && y < Width);
 
         /// <summary>
@@ -101,7 +102,7 @@ namespace GridTracking
         /// <param name="critter"> Critter object </param>
         public void PlotCritter(Critter critter) 
         {
-            Grid[new Tuple<int, int>(critter.X, critter.Y)].Add(critter);
+            Grid[new Tuple<long, long>(critter.X, critter.Y)].Add(critter);
             CritterCount++;
         }
 
@@ -110,17 +111,17 @@ namespace GridTracking
         /// </summary>
         /// <param name="x"> height </param>
         /// <param name="y"> width </param>
-        public void MakeMap(int x, int y)
-        {
-            Grid = new Dictionary<Tuple<int, int>, List<Critter>>();
-            for (int i = 0; i < x; i++)
-            {
-                for (int j = 0; j < y; j++)
-                {
-                    Grid.Add(new Tuple<int, int>(i,j), new List<Critter>());
-                }
-            }
-        }
+        //public void MakeMap(int x, int y)
+        //{
+        //    Grid = new Dictionary<Tuple<long, long>, List<Critter>>();
+        //    for (int i = 0; i < x; i++)
+        //    {
+        //        for (int j = 0; j < y; j++)
+        //        {
+        //            Grid.Add(new Tuple<long, long>(i,j), new List<Critter>());
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Get a random direction for the movement.

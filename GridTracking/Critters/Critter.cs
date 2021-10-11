@@ -8,9 +8,9 @@ namespace GridTracking.Critters
     {
         public string Type { get; set; }
         public string Name { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int PreviousX { get; set; }
-        public int PreviousY { get; set; }
+        public long X { get; set; }
+        public long Y { get; set; }
+        public long PreviousX { get; set; }
+        public long PreviousY { get; set; }
     }
 }
