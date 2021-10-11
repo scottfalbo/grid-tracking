@@ -14,7 +14,6 @@ namespace GridTracking
 
         public Map(long x, long y)
         {
-            //MakeMap(x, y);
             Grid = new Dictionary<Tuple<long, long>, List<Critter>>();
             Height = x;
             Width = y;
@@ -33,7 +32,7 @@ namespace GridTracking
                 {
                     foreach (Critter critter in coord.Value)
                     {
-                        int[] move = DirectionToCoords(GetRandomDirection());
+                        int[] move = Direction.GetRandomDirection();
                         MoveCritter(critter, move);
                     }   
                 }
@@ -51,15 +50,11 @@ namespace GridTracking
             {
                 critter.PreviousX = critter.X;
                 critter.PreviousY = critter.Y;
-
-                // remove
-
+                RemoveCritter(critter);
 
                 critter.X += move[0];
                 critter.Y += move[1];
-
-
-                // add new
+                PlotCritter(critter);
             }
         }
 
@@ -71,35 +66,6 @@ namespace GridTracking
         /// <returns> true if valid else false </returns>
         public bool ValidMovement(long x, long y) =>
             (x >= 0 && x < Height && y >= 0 && y < Width);
-
-        /// <summary>
-        /// Converts the Direction enum result into x, y movement adjustment.
-        /// Up = {-1, 0}, Down = {1, 0}, Left = {0, -1}, Right = {0, 1}
-        /// </summary>
-        /// <param name="direction"> Direction direction </param>
-        /// <returns> int[]{x, y} </returns>
-        public int[] DirectionToCoords(Direction direction)
-        {
-            int[] move = new int[2] { 0, 0 };
-            switch (direction)
-            {
-                case Direction.Up:
-                    move[0] -= 1;
-                    break;
-                case Direction.Down:
-                    move[0] += 1;
-                    break;
-                case Direction.Left:
-                    move[1] -= 1;
-                    break;
-                case Direction.Right:
-                    move[0] += 1;
-                    break;
-                default:
-                    break;
-            }
-            return move;
-        }
 
         /// <summary>
         /// Check to see if key exists in Dictionary.
@@ -129,34 +95,6 @@ namespace GridTracking
             else
                 Grid.Remove(coords);
             CritterCount--;
-        }
-
-        /// <summary>
-        /// Instantiate the Dictionary and add entires with Coords as keys.
-        /// </summary>
-        /// <param name="x"> height </param>
-        /// <param name="y"> width </param>
-        //public void MakeMap(int x, int y)
-        //{
-        //    Grid = new Dictionary<Tuple<long, long>, List<Critter>>();
-        //    for (int i = 0; i < x; i++)
-        //    {
-        //        for (int j = 0; j < y; j++)
-        //        {
-        //            Grid.Add(new Tuple<long, long>(i,j), new List<Critter>());
-        //        }
-        //    }
-        //}
-
-        /// <summary>
-        /// Get a random direction for the movement.
-        /// </summary>
-        /// <returns> random Direction enum </returns>
-        public Direction GetRandomDirection()
-        {
-            var random = new Random(DateTime.Now.Millisecond);
-            var randomValue = random.Next(0, 4);
-            return (Direction)randomValue;
         }
     }
 }
