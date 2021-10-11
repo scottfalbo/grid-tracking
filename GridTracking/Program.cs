@@ -9,12 +9,6 @@ namespace GridTracking
         static void Main(string[] args)
         {
             ConsoleUI();
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    int[] coords = Direction.GetRandomDirection();
-            //    Console.WriteLine($"{coords[0]}, {coords[1]}");
-            //}
-
         }
 
         static void ConsoleUI()
