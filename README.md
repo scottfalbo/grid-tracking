@@ -24,10 +24,13 @@ A C# implementation of a `Map` data structure for tracking the movement of multi
 ```cs
     public class Kraken : Critter
     {
-        public Kraken (string name, long x, long y) : base(name, x, y)
+        ...
+        public Kraken (string name, long x, long y, ...) : base(name, x, y)
         {
+            Type = "Kraken";
             ...
         }
+        ...
     }
 ```
 
