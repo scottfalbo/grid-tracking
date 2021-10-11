@@ -57,9 +57,7 @@ namespace GridTrackingTests
             map.PlotCritter(leviathan);
             int[] move = new int[] { 0, 1 };
             map.MoveCritter(leviathan, move);
-            int expected = 0;
-            int result = map.Grid[new Tuple<long, long>(5, 6)].Count;
-            Assert.Equal(expected, result);
+            Assert.Null(map.ViewCoordinate(5, 6));
         }
 
         [Fact]
