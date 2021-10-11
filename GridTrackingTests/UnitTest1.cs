@@ -110,6 +110,32 @@ namespace GridTrackingTests
             map.MoveCritter(kraken, move);
             move = new int[] { 1, 0 };
             map.MoveCritter(kraken, move);
+
+            List<Tuple<long, long>> expected = new List<Tuple<long, long>>();
+            expected.Add(new Tuple<long, long>(50, 50));
+            expected.Add(new Tuple<long, long>(51, 50));
+            expected.Add(new Tuple<long, long>(51, 49));
+
+            List<Tuple<long, long>> actual = map.GetMovementPattern(kraken);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(25, 76)]
+        [InlineData(30, 16)]
+        [InlineData(10, 90)]
+        [InlineData(0, 99)]
+        public void CanRetreiveCrittersCurrentCoords(long x, long y)
+        {
+            Map map = new Map(100, 100);
+            Kraken kraken = new Kraken("Lucipurr the Destroyer", x, y);
+            map.PlotCritter(kraken);
+
+            Tuple<long, long> expected = new Tuple<long, long>(x, y);
+            Tuple<long, long> actual = map.GetCurrentCoord(kraken);
+
+            Assert.Equal(expected, actual);
         }
     }
 }
