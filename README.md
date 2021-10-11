@@ -36,6 +36,8 @@ A C# implementation of a `Map` data structure for tracking movement.  The map co
 | RemoveCritter | Removes the Critter object from the Dictionary.  If it is the only critter at that coordinate the key/value is removed from the dictionary. | O(n) | - | `myMap.RemoveCritter(Critter critter)` |
 | ViewCoordinate | Retrieve a `List<Critter>` of all critters at the location.  Returns null if there are none. | O(n) | O(n) | `myMap.ViewCoordinate(long x, long y)` |
 | PrintMap | Print the map to the console. Each cell is represented by the number of critters populating it. | O(n^2) | - | `myMap.PrintMap()` |
+| GetMovementPattern | Retrieve a list of a `Critter` objects movement history in the form of (x, y) coordinates.  Returns critter.Movement. | O(n) | O(n) | `myMap.GetMovementPattern(Critter critter)` |
+| GetCurrentCoord | Retrieve the current coordinate of the critter.  Returns `Tuple<long, long>(critter.X, critter.Y)` | O(1) | O(1) | `myMap.GetCurrentCoord(Critter critter)` |
 
 ---
 
@@ -51,8 +53,7 @@ Base class that individual critters derive from.
 | Name | `string` | The critter's unique name |
 | X | `long` | The critter's current x coordinate. |
 | Y | `long` | The critter's current y coordinate. |
-| PreviousX | `long` | The critter's previous x coordinate after movement. |
-| PreviousX | `long` | The critter's previous y coordinate after movement. |
+| Movement | `List<Tuple<long, long>>` | A list of the critters movement history. |
 
 ---
 
@@ -67,3 +68,5 @@ Base class that individual critters derive from.
   + Added the `PrintMap` method detailed above.
 + 10/11/2021
   + Refactored derived class constructors to inherit shared constructor from `Critter` class.
+  + Changed the `Critter` classes previous coord props to a list of all previous movement.
+  + Added and tested methods to retrieve a critters movement history and current location.
