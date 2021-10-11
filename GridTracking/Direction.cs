@@ -12,8 +12,8 @@ namespace GridTracking
         /// <returns> random Direction enum </returns>
         public static int[] GetRandomDirection()
         {
-            var random = new Random(DateTime.Now.Millisecond);
-            var randomValue = random.Next(0, 4);
+            Random random = new Random(DateTime.Now.Millisecond);
+            int randomValue = random.Next(0, 4);
             return DirectionToCoords((RandomDirection)randomValue);
         }
 

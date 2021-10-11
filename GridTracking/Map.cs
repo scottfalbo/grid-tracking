@@ -1,6 +1,7 @@
 ﻿using GridTracking.Critters;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GridTracking
@@ -26,16 +27,13 @@ namespace GridTracking
         /// </summary>
         public void MoveCritters()
         {
-            foreach (var coord in Grid)
+            foreach (var coord in Grid.Values.ToList())
             {
-                if (coord.Value.Count > 0)
+                foreach (Critter critter in coord.ToList())
                 {
-                    foreach (Critter critter in coord.Value)
-                    {
-                        int[] move = Direction.GetRandomDirection();
-                        MoveCritter(critter, move);
-                    }   
-                }
+                    int[] move = Direction.GetRandomDirection();
+                    MoveCritter(critter, move);
+                }   
             }
         }
 
@@ -90,9 +88,9 @@ namespace GridTracking
         public void RemoveCritter(Critter critter)
         {
             Tuple<long, long> coords = new Tuple<long, long>(critter.X, critter.Y);
-            if (Grid.ContainsKey(coords))
-                Grid[coords].Remove(critter);
-            else
+            Grid[coords].Remove(critter);
+
+            if (Grid[coords].Count == 0)
                 Grid.Remove(coords);
             CritterCount--;
         }
@@ -130,12 +128,12 @@ namespace GridTracking
                     Tuple<long, long> coords = new Tuple<long, long>(i, j);
                     if (Grid.ContainsKey(coords))
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write($" {Grid[coords].Count} ");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.Write($" {0} ");
                     }
                 }
