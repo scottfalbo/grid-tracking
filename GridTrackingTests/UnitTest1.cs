@@ -13,7 +13,7 @@ namespace GridTrackingTests
         [InlineData("Harry Winston", 17, 65)]
         [InlineData("Lucipurr", 87, 12)]
         [InlineData("Ethel Bean", 56003, 70933)]
-        public void CanSuccessfullyPlotNewCritterOnTheGrid(string name, long x, long y)
+        public void CanPlotNewCritterOnTheGrid(string name, long x, long y)
         {
             Map map = new Map(100, 100);
             Kraken kraken = new Kraken(name, x, y);
@@ -23,13 +23,52 @@ namespace GridTrackingTests
             Assert.Equal(expected, result);
         }
 
+        [Fact]
+        public void CanAccuratelyCountTotalNumberOfCrittersOnMap()
+        {
+            Map map = new Map(10, 10);
+            Kraken spaceghost = new Kraken("Spaceghost", 2, 3);
+            Cthulhu harry = new Cthulhu("Harry Winston", 7, 1);
+            Leviathan luci = new Leviathan("Lucipurr", 5, 6);
+            Leviathan ethel = new Leviathan("Ethel", 7, 1);
+            map.PlotCritter(spaceghost);
+            map.PlotCritter(harry);
+            map.PlotCritter(luci);
+            map.PlotCritter(ethel);
+
+            long expected = 4;
+            long actual = map.CritterCount;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CanAccuratelyCountTotalNumberOfCrittersOnMapWhenRemoved()
+        {
+            Map map = new Map(10, 10);
+            Kraken spaceghost = new Kraken("Spaceghost", 2, 3);
+            Cthulhu harry = new Cthulhu("Harry Winston", 7, 1);
+            Leviathan luci = new Leviathan("Lucipurr", 5, 6);
+            Leviathan ethel = new Leviathan("Ethel", 7, 1);
+            map.PlotCritter(spaceghost);
+            map.PlotCritter(harry);
+            map.PlotCritter(luci);
+            map.PlotCritter(ethel);
+            map.RemoveCritter(spaceghost);
+
+            long expected = 3;
+            long actual = map.CritterCount;
+
+            Assert.Equal(expected, actual);
+        }
+
         [Theory]
         [InlineData(2, 5, true)]
         [InlineData(-1, 7, false)]
         [InlineData(0, 11, false)]
         [InlineData(11, 5, false)]
         [InlineData(6, -3, false)]
-        public void CanSuccessfullyFindEdgeOfGrid(int x, int y, bool expected)
+        public void CanFindEdgeOfGrid(int x, int y, bool expected)
         {
             Map map = new Map(10, 10);
             bool result = map.ValidMovement(x, y);
@@ -37,7 +76,7 @@ namespace GridTrackingTests
         }
 
         [Fact]
-        public void CanSuccessfullyMoveCritterToNewValidCoord()
+        public void CanMoveCritterToNewValidCoord()
         {
             Map map = new Map(10, 10);
             Leviathan leviathan = new Leviathan("Lucipurr", 5, 6);
@@ -50,7 +89,7 @@ namespace GridTrackingTests
         }
 
         [Fact]
-        public void CanSuccessfullyRemoveCritterFromCurrentCoordOnMove()
+        public void CanRemoveCritterFromCurrentCoordOnMove()
         {
             Map map = new Map(10, 10);
             Leviathan leviathan = new Leviathan("Ethel", 5, 6);
@@ -99,7 +138,7 @@ namespace GridTrackingTests
         }
 
         [Fact]
-        public void CanSuccessfullyTrackAndRecordCritterMovement()
+        public void CanTrackAndRecordCritterMovement()
         {
             Map map = new Map(100, 100);
             Kraken kraken = new Kraken("Lucipurr the Destroyer", 50, 50);
@@ -126,7 +165,7 @@ namespace GridTrackingTests
         [InlineData(30, 16)]
         [InlineData(10, 90)]
         [InlineData(0, 99)]
-        public void CanRetreiveCrittersCurrentCoords(long x, long y)
+        public void CanRetrieveCrittersCurrentCoords(long x, long y)
         {
             Map map = new Map(100, 100);
             Kraken kraken = new Kraken("Lucipurr the Destroyer", x, y);
