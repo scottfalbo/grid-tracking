@@ -34,8 +34,8 @@ A C# implementation of a `Map` data structure for tracking movement.  The map co
 | ValidMovement | Ensures that the proposed movement is within the index range of the Grid. | O(1) | O(1) | `myMap.ValidMovement(long x, long y`) |
 | GetRandomDirection | Get a random direction from the `Direction enum` | O(1) | O(1) | `myMap.GetRandomDirection()` |
 | DirectionToCoords | Convert the `Direction` result from `GetRandomDirection()` to in `int[]{x, y}` where `x` and `y` represent the target coordinates. | O(1) | O(1) | `myMap.DirectionToCoords(Direction direction)` |
-| MakeMap | Method used by the constructor to instantiate the `Grid` property with the user given index constraints. | O(n^2) | O(n^2) | `myMap.MakeMap()` |
-| PlotCritter | Places a `Critter` object in the `Grid` property at the critter's assigned coordinates. | O(1) | O(1) | `myMap.PlotCritter(Critter critter)` |
+| PlotCritter | Checks the `Critter` objects assigned X and Y properties.  If the key already exists in the Dictionary the critter is added to the list, if not a new key/value is created with the `Critter` object. | O(1) | O(1) | `myMap.PlotCritter(Critter critter)` |
+| RemoveCritter | Removes the Critter object from the Dictionary.  If it is the only critter at that coordinate the key/value is removed from the dictionary. | O(n) | - | `myMap.RemoveCritter(Critter critter)` |
 
 ---
 
